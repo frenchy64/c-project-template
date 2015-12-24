@@ -1,11 +1,12 @@
 // From "C Programming the hard way", Zed Shaw
+// Use the -DNDEBUG flag to disable debugging.
 #ifndef __dbg_h__
 #define __dbg_h__
 
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include <pthread.h>
+//#include <pthread.h>  include this if using alternative `debug` implementation
 
 /** 
   // notice you don't need the \n
@@ -17,8 +18,9 @@
 #ifdef NDEBUG
 #define debug(M, ...)
 #else
-//#define debug(M, ...) fprintf(stderr, "DEBUG %s:%d: " M "\n", __FILE__, __LINE__, ##__VA_ARGS__)
-#define debug(M, ...) fprintf(stderr, "DEBUG %s:%d: [Thread: %i] " M "\n", __FILE__, __LINE__, (int)pthread_self(), ##__VA_ARGS__)
+// if you need to know which thread you're executing on, comment out the next line and uncomment the 2nd line after this. Also uncomment the pthread.h include above.
+#define debug(M, ...) fprintf(stderr, "DEBUG %s:%d: " M "\n", __FILE__, __LINE__, ##__VA_ARGS__)
+//#define debug(M, ...) fprintf(stderr, "DEBUG %s:%d: [Thread: %i] " M "\n", __FILE__, __LINE__, (int)pthread_self(), ##__VA_ARGS__)
 #endif
 
 #if defined(CNGSTDEBUG) || !defined(NDEBUG)

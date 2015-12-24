@@ -2,6 +2,7 @@
 
 # Here we define a few variables that we use later.
 NAME=project
+TESTS=tests
 CC=gcc
 
 # These are various C compiler flags.
@@ -33,5 +34,5 @@ clean:
 # `make test`
 # Compile and run the test suite under Valgrind.
 test:
-	$(CC) util.c tests.c -o tests $(CFLAGS)
-	valgrind --track-origins=yes ./tests
+	$(CC) util.c tests.c -o $(TESTS) $(CFLAGS)
+	valgrind --track-origins=yes ./$(TESTS)
