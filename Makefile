@@ -17,14 +17,14 @@ CFLAGS=-Wall -lrt -lm #-DNDEBUG
 # When calling `make`, the first argument we pass determines what happens
 # next. The default (`make`) just matches the first event, `all`, defined
 # below. All it does is call the `compile` event, so `make` is the same
-# as `make compile`.
+# as `make compile` followed by `make run`
 all: compile
 
 # `make compile`
 # Notice we can use variables with the $(VAR_NAME) syntax.
 # We insert the compiler flags and the name of the C compiler via variables.
 compile:
-	$(CC) command_line_args.c util.c -o command_line_args $(CFLAGS)
+	$(CC) command_line_args.c util.c -o $(NAME) $(CFLAGS)
 
 # `make clean`
 # Deletes the file called NAME (defined above).
